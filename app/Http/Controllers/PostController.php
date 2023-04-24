@@ -132,11 +132,14 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+
+        // DB::delete('DELETE FROM posts WHERE id = ?',[$post->id]);
+        // DB::table('posts')->where('id',$post->id)->delete();
+        $post->delete();
+        // Post::destroy($post->id);
+
+        // return redirect('/post');
+        return redirect()->route('post.index');
     }
 
-    public function one($id){
-        // DB::select('select * from posts where id = ?',[$id]);
-        // DB::table('posts')->find($id);
-        // Post::find($id);
-    }
 }
