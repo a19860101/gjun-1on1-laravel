@@ -109,6 +109,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+        return view('post.edit',compact('post'));
     }
 
     /**
@@ -121,6 +122,21 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        // DB::update('update posts set title=?,body=?,updated_at=? where id = ?',[
+        //     $request->title,
+        //     $request->body,
+        //     now(),
+        //     $post->id
+        // ]);
+
+        // DB::table('posts')->update([
+        //     'title'     => 
+        // ]);
+
+        $post->fill($request->all());
+        $post->save();
+
+        return redirect()->route('post.show',$post->id);
     }
 
     /**
