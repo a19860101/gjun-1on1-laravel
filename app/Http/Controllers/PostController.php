@@ -52,6 +52,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => ['required'],
+            'body' => ['required']
+        ]);
+
         // return $request;
         // DB::insert('INSERT INTO posts(title,body,created_at,updated_at)VALUES(?,?,?,?)',[
         //     $request->title,
