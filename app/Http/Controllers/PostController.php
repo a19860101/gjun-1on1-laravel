@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+// use App\Models\Category;
 use Illuminate\Http\Request;
 use DB;
 
@@ -40,7 +41,8 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('post.create');
+        $categories = \App\Models\Category::get();
+        return view('post.create',compact('categories'));
     }
 
     /**

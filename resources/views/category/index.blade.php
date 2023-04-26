@@ -14,6 +14,7 @@
                 <label for="">title</label>
                 <input type="text" name="title">
             </div>
+
             <div>
                 <label for="">slug</label>
                 <input type="text" name="slug">
