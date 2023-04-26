@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::get('/', function () {
 // Route::resource('/product',ProductController::class);
 
 Route::resource('/post',PostController::class);
+Route::resource('/category',CategoryController::class);
 
