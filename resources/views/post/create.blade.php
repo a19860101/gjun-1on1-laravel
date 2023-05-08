@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .is-valid {
-            border-color: red;
-        }
-    </style>
-</head>
-<body>
+@extends('template.master')
+@section('main')
     <h1>Create Post</h1>
     <form action="{{route('post.store')}}" method="post">
         @csrf
@@ -37,5 +25,4 @@
         <div>{{$error}}</div>
         @endforeach
     @endif
-</body>
-</html>
+    @endsection
