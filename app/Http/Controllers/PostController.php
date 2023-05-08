@@ -16,6 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        $text = '<h1>test</h1>';
+
         //
         // $posts = DB::select('SELECT * FROM posts');
 
@@ -27,7 +29,7 @@ class PostController extends Controller
         // $qq = 123;
         // return view('post.index',['qq'=>$qq]);
         // return view('post.index',compact('qq'));
-        return view('post.index')->with(['posts' => $posts]);
+        return view('post.index')->with(['posts' => $posts,'text'=>$text]);
         // return view('post.index',['datas' => $posts]);
         // return view('post.index',compact('posts'));
 
@@ -84,7 +86,6 @@ class PostController extends Controller
         $post->save();
 
         // Post::create($request->all());
-        
         return redirect('/post');
     }
 
