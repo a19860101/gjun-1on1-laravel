@@ -90,7 +90,8 @@ class PostController extends Controller
 
         $tags = explode(',',$request->tag);
         foreach($tags as $tag){
-            Tag::firstOrCreate(['title' => $tag]);
+            $tagModel = Tag::firstOrCreate(['title' => $tag]);
+            $post->tags()->attach($tagModel);
         }
 
         // Post::create($request->all());

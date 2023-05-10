@@ -1,10 +1,6 @@
 @extends('template.master')
 @section('style')
-    <style>
-        body {
-            color: yellow;
-        }
-    </style>
+   
 @endsection
 @section('main')
 <h1>hello Post </h1>
