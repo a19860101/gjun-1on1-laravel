@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 // use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use DB;
 
@@ -56,6 +57,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        
+
         $request->validate([
             'title' => ['required'],
             'body' => ['required']
@@ -84,6 +87,11 @@ class PostController extends Controller
         $post = new Post;
         $post->fill($request->all());
         $post->save();
+
+        $tags = explode(',',$request->tag);
+        foreach($tags as $tag){
+            Tag::firstOrCreate(['title' => $tag]);
+        }
 
         // Post::create($request->all());
         return redirect('/post');

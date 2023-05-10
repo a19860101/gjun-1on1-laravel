@@ -16,6 +16,10 @@
             </select>
         </div>
         <div>
+            <label for="">Tag</label>
+            <input type="text" name="tag">
+        </div>
+        <div>
             <textarea name="body" id="" cols="30" rows="10"></textarea>
         </div>
         <input type="submit">
