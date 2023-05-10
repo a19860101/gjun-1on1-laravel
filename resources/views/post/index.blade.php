@@ -12,6 +12,7 @@
     {!!$text!!}
     @foreach($posts as $post)
     <h2>{{$post->title}}</h2>
+    <div>tag: {{$post->tagStr()}}</div>
     <div>{{$post->category->title}}</div>
     <small>{{$post->created_at}}</small>
     <div>

@@ -15,4 +15,12 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
+    public function tagStr(){
+        $tagArray=[];
+        foreach($this->tags as $tags){
+            $tagArray[] = $tags->title;
+        }
+        $tagStr = implode(',',$tagArray);
+        return $tagStr;
+    }
 }

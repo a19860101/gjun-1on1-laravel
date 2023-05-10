@@ -9,14 +9,14 @@
             <input type="text" name="title" value="{{$post->title}}">
         </div>
         <div>
-            @php
+            {{-- @php
             $tagArray=[];
             foreach($post->tags as $tags){
                 $tagArray[] = $tags->title;
             }
             $tagStr = implode(',',$tagArray);
-            @endphp
-            <input type="text" name="tag" value="{{$tagStr}}">
+            @endphp --}}
+            <input type="text" name="tag" value="{{$post->tagStr()}}">
         </div>
         <div>
             <textarea name="body" id="" cols="30" rows="10">{{$post->body}}</textarea>
