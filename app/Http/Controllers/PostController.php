@@ -152,7 +152,12 @@ class PostController extends Controller
 
         $post->fill($request->all());
         $post->save();
-
+        $post->tags()->detach();
+        $tags = explode(',',$request->tag);
+        foreach($tags as $tag){
+            $tagModel = Tag::firstOrCreate(['title' => $tag]);
+            $post->tags()->attach($tagModel);
+        }
         return redirect()->route('post.show',$post->id);
     }
 
