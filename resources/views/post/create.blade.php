@@ -1,11 +1,14 @@
 @extends('template.master')
 @section('main')
     <h1>Create Post</h1>
-    <form action="{{route('post.store')}}" method="post">
+    <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div>
             <input type="text" name="title" class="@error('title') is-valid @enderror" value="{{old('title')}}">
             @error('title') {{$message}} @enderror
+        </div>
+        <div>
+            <input type="file" name="cover">
         </div>
         <div>
             <label for="">分類</label>

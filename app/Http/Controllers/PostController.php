@@ -58,6 +58,7 @@ class PostController extends Controller
     {
         //
         
+        return $request->file('cover');
 
         $request->validate([
             'title' => ['required'],
