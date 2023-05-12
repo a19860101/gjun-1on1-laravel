@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use DB;
+use Str;
 
 class PostController extends Controller
 {
@@ -58,7 +59,11 @@ class PostController extends Controller
     {
         //
         
-        return $request->file('cover')->store('images','public');
+        // return $request->file('cover')->store('images','public');
+        $ext = $request->file('cover')->getClientOriginalExtension();
+        $cover_name = Str::uuid();
+        $final_name = $cover_name.'.'.$ext;
+        return $request->file('cover')->storeAs('images',$final_name,'public');
 
         $request->validate([
             'title' => ['required'],
