@@ -8,7 +8,7 @@
             @error('title') {{$message}} @enderror
         </div>
         <div>
-            <input type="file" name="cover">
+            <input type="file" name="cover" >
         </div>
         <div>
             <label for="">分類</label>

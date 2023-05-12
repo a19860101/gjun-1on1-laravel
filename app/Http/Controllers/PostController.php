@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use DB;
 use Str;
+use Storage;
 
 class PostController extends Controller
 {
@@ -184,7 +185,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
-
+        // Storage::disk('public')->delete('/images/'.$post->cover);
         // DB::delete('DELETE FROM posts WHERE id = ?',[$post->id]);
         // DB::table('posts')->where('id',$post->id)->delete();
         $post->delete();
