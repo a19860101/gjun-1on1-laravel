@@ -58,7 +58,7 @@ class PostController extends Controller
     {
         //
         
-        return $request->file('cover');
+        return $request->file('cover')->store('images','public');
 
         $request->validate([
             'title' => ['required'],
