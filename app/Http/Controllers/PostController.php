@@ -60,10 +60,7 @@ class PostController extends Controller
         //
         
         // return $request->file('cover')->store('images','public');
-        $ext = $request->file('cover')->getClientOriginalExtension();
-        $cover_name = Str::uuid();
-        $final_name = $cover_name.'.'.$ext;
-        return $request->file('cover')->storeAs('images',$final_name,'public');
+       
 
         $request->validate([
             'title' => ['required'],
@@ -89,9 +86,20 @@ class PostController extends Controller
         // $post->title = $request->title;
         // $post->body = $request->body;
         // $post->save();
+        if( $request->file('cover')){
+
+            $ext = $request->file('cover')->getClientOriginalExtension();
+            $cover_name = Str::uuid();
+            $final_name = $cover_name.'.'.$ext;
+            $request->file('cover')->storeAs('images',$final_name,'public');
+        }else{
+            $final_name = null;
+        }
+        
 
         $post = new Post;
         $post->fill($request->all());
+        $post->cover = $final_name;
         $post->save();
 
         $tags = explode(',',$request->tag);
