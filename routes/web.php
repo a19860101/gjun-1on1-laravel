@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,21 +11,36 @@ use App\Http\Controllers\CategoryController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+// Route::resource('/post',PostController::class)->middleware('auth');
+Route::group(['middleware'=>'auth'],function(){
+    Route::resource('/post',PostController::class)->except('index','show');
 });
-// Route::get('/product',[ProductController::class,'index'])->name('product.index');
-// Route::get('/product',[App\Http\Controllers\ProductController::class,'index']);
-// Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
+Route::resource('/post',PostController::class)->only('index','show');
 
-// Route::get('/test/product',[ProductController::class,'test']);
-// Route::resource('/product',ProductController::class);
-
-Route::resource('/post',PostController::class);
 Route::resource('/category',CategoryController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('test/{id}/{prod}',function($id,$prod){
+    return $id.'.'.$prod;
+});
+require __DIR__.'/auth.php';
+Route::get('logout',function(){
+    Auth::logout();
+    return redirect('/');
+})->name('auth.logout');

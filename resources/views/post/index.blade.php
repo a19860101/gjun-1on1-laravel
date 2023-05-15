@@ -9,6 +9,7 @@
 
 <div>
     {{$text}}
+    <a href="/test?id=123">test</a>
     {!!$text!!}
     @foreach($posts as $post)
     <h2>{{$post->title}}</h2>
