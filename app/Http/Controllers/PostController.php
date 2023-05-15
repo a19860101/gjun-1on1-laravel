@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use DB;
 use Str;
 use Storage;
+use Auth;
 
 class PostController extends Controller
 {
@@ -101,6 +102,7 @@ class PostController extends Controller
         $post = new Post;
         $post->fill($request->all());
         $post->cover = $final_name;
+        $post->user_id = Auth::id();
         $post->save();
 
         $tags = explode(',',$request->tag);
