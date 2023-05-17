@@ -37,6 +37,7 @@ class PostController extends Controller
 
         // $posts = DB::table('posts')->get();
 
+        // $posts = Post::get();
         $posts = Post::get();
         // return view('post.index')->with(['qq' => '123']);
         // return view('post.index',['qq' => '123']);
