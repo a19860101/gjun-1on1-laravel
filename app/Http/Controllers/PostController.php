@@ -18,8 +18,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        $this->authorize('viewAny',Post::class);
+        // if($request->user() == null){
+        //     abort(403);
+        // }
+        if($request->user()->cannot('viewAny',Post::class)
+        ){
+            abort(403);
+        }
+        
+
         $text = '<h1>test</h1>';
 
         //
@@ -123,9 +133,9 @@ class PostController extends Controller
      */
     public function show(Request $request,Post $post)
     {
-        if($request->user()->cannot('view',$post)){
-            abort(403);
-        }
+        // if($request->user()->cannot('view',$post)){
+        //     abort(403);
+        // }
                 //
         // $post = DB::select('select * from posts where id = ?',[$post]);
         // $post = DB::table('posts')->where('id',$post)->get();
