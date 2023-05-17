@@ -121,9 +121,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Request $request,Post $post)
     {
-        //
+        if($request->user()->cannot('view',$post)){
+            abort(403);
+        }
+                //
         // $post = DB::select('select * from posts where id = ?',[$post]);
         // $post = DB::table('posts')->where('id',$post)->get();
         // $post = DB::table('posts')->find($post);
@@ -155,6 +158,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if ($request->user()->cannot('update',$post)) {
+            abort(403);
+        }
         //
         // DB::update('update posts set title=?,body=?,updated_at=? where id = ?',[
         //     $request->title,

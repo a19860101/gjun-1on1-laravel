@@ -26,7 +26,7 @@ Route::group(['middleware'=>'auth'],function(){
 });
 Route::resource('/post',PostController::class)->only('index','show');
 
-Route::resource('/category',CategoryController::class);
+Route::resource('/category',CategoryController::class)->middleware('can:admin');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
