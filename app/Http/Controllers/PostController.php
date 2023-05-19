@@ -228,7 +228,9 @@ class PostController extends Controller
         return redirect()->route('admin.post');
     }
     public function adminPostForceDelete($id){
-        return $id;
+        $post = Post::onlyTrashed()->find($id);
+        $post->forceDelete();
+        return redirect()->route('admin.post');
     }
 
 }
