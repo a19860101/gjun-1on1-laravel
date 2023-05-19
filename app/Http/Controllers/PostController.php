@@ -218,5 +218,17 @@ class PostController extends Controller
         $trashes = Post::onlyTrashed()->get();
         return view('admin.post.index',compact('posts','trashes'));
     }
+    public function adminPostDestroy(Post $post){
+        $post->delete();
+        return redirect()->route('admin.post');
+    }
+    public function adminPostRestore($id){
+        $post = Post::onlyTrashed()->find($id);
+        $post->restore();
+        return redirect()->route('admin.post');
+    }
+    public function adminPostForceDelete($id){
+        return $id;
+    }
 
 }

@@ -31,6 +31,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/admin/post', [PostController::class,'adminPostIndex'])->middleware(['auth', 'verified'])->name('admin.post');
+Route::delete('/admin/post/{post}', [PostController::class,'adminPostDestroy'])->middleware(['auth', 'verified'])->name('admin.post.destroy');
+Route::get('/admin/post/{id}', [PostController::class,'adminPostRestore'])->middleware(['auth', 'verified'])->name('admin.post.restore');
+Route::delete('/admin/post/{id}/forcedelete', [PostController::class,'adminPostForceDelete'])->middleware(['auth', 'verified'])->name('admin.post.forcedelete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
