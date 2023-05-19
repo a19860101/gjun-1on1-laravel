@@ -30,6 +30,7 @@ Route::resource('/category',CategoryController::class)->middleware('can:admin');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/admin/post', [PostController::class,'adminPostIndex'])->middleware(['auth', 'verified'])->name('admin.post');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

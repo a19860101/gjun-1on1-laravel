@@ -213,5 +213,10 @@ class PostController extends Controller
         // return redirect('/post');
         return redirect()->route('post.index');
     }
+    public function adminPostIndex(){
+        $posts = Post::get();
+        $trashes = Post::onlyTrashed()->get();
+        return view('admin.post.index',compact('posts','trashes'));
+    }
 
 }
