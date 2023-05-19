@@ -6,6 +6,7 @@ use App\Models\Post;
 // use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Notifications\PostCreate;
 use DB;
 use Str;
 use Storage;
@@ -123,6 +124,10 @@ class PostController extends Controller
         }
 
         // Post::create($request->all());
+
+        //通知
+        $post->notify(new PostCreate());
+
         return redirect('/post');
     }
 
