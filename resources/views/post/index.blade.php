@@ -13,7 +13,7 @@
     {!!$text!!}
     @foreach($posts as $post)
     <h2>{{$post->title}}</h2>
-    <div>author:{{$post->user_id}}</div>
+    <div>author:{{$post->user->name}}</div>
     <img src="/images/{{$post->cover}}" alt="">
     <div>tag: {{$post->tagStr()}}</div>
     <div>{{$post->category->title}}</div>

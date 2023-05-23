@@ -27,4 +27,7 @@ class Post extends Model
         $tagStr = implode(',',$tagArray);
         return $tagStr;
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -60,7 +60,7 @@ class PostCreate extends Notification
             //
             'title' => 'You have new post',
             'subject' => $this->post->title,
-            // 'author' => $this->post->user
+            'author' => $this->post->user->name
         ];
     }
 }
