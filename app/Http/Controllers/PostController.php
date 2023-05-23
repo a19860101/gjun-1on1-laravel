@@ -126,7 +126,7 @@ class PostController extends Controller
         // Post::create($request->all());
 
         //通知
-        $post->notify(new PostCreate());
+        $post->notify(new PostCreate($post));
 
         return redirect('/post');
     }

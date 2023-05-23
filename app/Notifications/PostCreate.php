@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-
+use App\Models\Post;
 class PostCreate extends Notification
 {
     use Queueable;
-
+    public $post;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Post $post)
     {
         //
+        $this->post = $post;
+
     }
 
     /**
@@ -56,7 +58,9 @@ class PostCreate extends Notification
     {
         return [
             //
-            'title' => 'You have new post'
+            'title' => 'You have new post',
+            'subject' => $this->post->title,
+            // 'author' => $this->post->user
         ];
     }
 }
