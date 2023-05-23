@@ -45,6 +45,8 @@ class PostController extends Controller
         // $qq = 123;
         // return view('post.index',['qq'=>$qq]);
         // return view('post.index',compact('qq'));
+        $post = Post::find(5);
+        $post->notify(new PostCreate($post));
         return view('post.index')->with(['posts' => $posts,'text'=>$text]);
         // return view('post.index',['datas' => $posts]);
         // return view('post.index',compact('posts'));

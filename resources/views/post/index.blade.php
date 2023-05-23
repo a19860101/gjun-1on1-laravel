@@ -3,11 +3,17 @@
    
 @endsection
 @section('main')
-<h1>hello Post </h1>
+<x-title>hello post 123</x-title>
 {{-- <a href="/post/create">新增文章</a> --}}
 {{-- <a href="{{route('post.create')}}">新增文章</a> --}}
 
 <div>
+    @php
+        $style = 'red';    
+    @endphp
+    <x-button type="submit" :style="$style">hello</x-button>
+    <x-button type="reset" >hello</x-button>
+    <x-button >hello</x-button>
     {{$text}}
     <a href="/test?id=123">test</a>
     {!!$text!!}

@@ -31,7 +31,8 @@ class PostCreate extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        // return ['database'];
+        return ['mail'];
     }
 
     /**

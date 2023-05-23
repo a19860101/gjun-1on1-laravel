@@ -15,4 +15,6 @@
     </form>
     <a href="/post/{{$post->id}}/edit">編輯</a>
     <a href="{{route('post.edit',$post->id)}}">編輯</a>
+
+    <x-button>test button</x-button>
     @endsection
